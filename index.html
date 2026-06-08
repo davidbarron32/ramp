@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ramp</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Ramp</h1>
+  <p class="description">Enter your working weight (weight you'd like to work up to) to get a percentage based warmup with exact plates you will need per side of the bar.</p>
+  
+  <label>Unit:</label>
+  <div class="unit-toggle">
+    <input type="radio" id="unit-lb" name="unit" value="lb" checked>
+    <label for="unit-lb">lb</label>
+    <input type="radio" id="unit-kg" name="unit" value="kg">
+    <label for="unit-kg">kg</label>
+  </div>
+
+  <label for="bar">Barbell:</label>
+  <select id="bar"></select>
+
+  <label for="working">Working Weight:</label>
+  <input type="number" id="working">
+  
+  <button id="calculate">Calculate Warmup</button>
+  
+  <pre id="result"></pre>
+  
+  <script src="script.js"></script>
+</body>
+</html>
