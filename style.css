@@ -1,94 +1,224 @@
 body {
   font-family: -apple-system, system-ui, sans-serif;
-  max-width: 500px;
+  -webkit-font-smoothing: antialiased;
+  max-width: 480px;
   margin: 0 auto;
-  padding: 20px;
-  background: #1a1a1a;
-  color: #f0f0f0;
+  padding: 32px 20px 48px;
+  background: #111113;
+  color: #f5f5f7;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
 }
 
 .description {
-  color: #aaa;
-  margin-bottom: 24px;
+  color: #98989f;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0 0 28px;
 }
 
 label {
   display: block;
-  margin-top: 16px;
+  margin: 20px 0 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #98989f;
+}
+
+.unit-toggle,
+.mode-toggle {
+  display: flex;
+  background: #1c1c1e;
+  border-radius: 10px;
+  padding: 3px;
   margin-bottom: 4px;
 }
 
-.unit-toggle {
-  display: flex;
-  background: #2a2a2a;
-  border: 1px solid #444;
-  border-radius: 8px;
-  padding: 4px;
-  margin-bottom: 8px;
-}
-
-.unit-toggle input[type="radio"] {
+.unit-toggle input[type="radio"],
+.mode-toggle input[type="radio"] {
   display: none;
 }
 
-.unit-toggle label {
+.unit-toggle label,
+.mode-toggle label {
   flex: 1;
   text-align: center;
   padding: 8px;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  color: #aaa;
+  color: #98989f;
   margin: 0;
-  font-size: 16px;
-  transition: background 0.15s, color 0.15s;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
-.unit-toggle input[type="radio"]:checked + label {
-  background: #4a90e2;
-  color: white;
+.unit-toggle input[type="radio"]:checked + label,
+.mode-toggle input[type="radio"]:checked + label {
+  background: #0a84ff;
+  color: #fff;
   font-weight: 600;
+}
+
+.mode-section {
+  display: none;
+}
+
+.mode-section.active {
+  display: block;
 }
 
 select,
 input,
 button {
   width: 100%;
-  padding: 12px;
+  padding: 13px 14px;
   font-size: 16px;
-  border-radius: 8px;
+  font-family: inherit;
+  border-radius: 10px;
   box-sizing: border-box;
 }
 
 select,
 input {
-  background: #2a2a2a;
-  color: #f0f0f0;
-  border: 1px solid #444;
+  background: #1c1c1e;
+  color: #f5f5f7;
+  border: 1px solid #2c2c2e;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+select:focus,
+input:focus {
+  border-color: #0a84ff;
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.25);
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 button {
-  margin-top: 24px;
-  background: #4a90e2;
-  color: white;
+  margin-top: 28px;
+  background: #0a84ff;
+  color: #fff;
   border: none;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 17px;
   cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
 }
 
 button:hover {
-  background: #3a7ec1;
+  background: #0974e0;
+}
+
+button:active {
+  transform: scale(0.98);
 }
 
 #result {
-  margin-top: 24px;
-  padding: 16px;
-  background: #2a2a2a;
-  border-radius: 8px;
-  font-family: inherit;
+  margin-top: 28px;
+  background: #1c1c1e;
+  border-radius: 14px;
+  overflow: hidden;
+  animation: rise 0.25s ease;
+}
+
+#result:empty {
+  display: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.set-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 13px 16px;
+  border-bottom: 1px solid #2c2c2e;
+  font-variant-numeric: tabular-nums;
+}
+
+.set-label {
+  color: #98989f;
+  font-size: 15px;
+}
+
+.set-detail {
+  text-align: right;
+}
+
+.set-weight {
+  display: block;
   font-size: 16px;
+  font-weight: 600;
+}
+
+.set-plates {
+  display: block;
+  font-size: 13px;
+  color: #98989f;
+  margin-top: 2px;
+}
+
+.working-row {
+  border-bottom: none;
+}
+
+.working-row .set-label,
+.working-row .set-weight {
+  color: #0a84ff;
+}
+
+.working-row .set-weight {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.projected-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 12px 16px;
+  background: #232325;
+}
+
+.projected-row .set-label {
+  font-size: 14px;
+}
+
+.projected-value {
+  font-weight: 600;
+  font-size: 15px;
+  color: #f5f5f7;
+  font-variant-numeric: tabular-nums;
+}
+
+.empty-state {
+  padding: 16px;
+  color: #98989f;
+  font-size: 15px;
+  text-align: center;
 }

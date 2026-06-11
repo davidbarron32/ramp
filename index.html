@@ -8,7 +8,7 @@
 </head>
 <body>
   <h1>Ramp</h1>
-  <p class="description">Enter your working weight (weight you'd like to work up to) to get a percentage based warmup with exact plates you will need per side of the bar.</p>
+  <p class="description">Plan your warmup ramp with exact plates per side. Set your top set by weight, percentage of 1RM, or RPE.</p>
   
   <label>Unit:</label>
   <div class="unit-toggle">
@@ -21,12 +21,51 @@
   <label for="bar">Barbell:</label>
   <select id="bar"></select>
 
-  <label for="working">Working Weight:</label>
-  <input type="number" id="working">
+  <label>Top Set:</label>
+  <div class="mode-toggle">
+    <input type="radio" id="mode-weight" name="mode" value="weight" checked>
+    <label for="mode-weight">Weight</label>
+    <input type="radio" id="mode-percent" name="mode" value="percent">
+    <label for="mode-percent">%</label>
+    <input type="radio" id="mode-rpe" name="mode" value="rpe">
+    <label for="mode-rpe">RPE</label>
+  </div>
+
+  <div class="mode-section mode-weight active">
+    <label for="working">Working Weight:</label>
+    <input type="number" id="working">
+  </div>
+
+  <div class="mode-section mode-percent">
+    <label for="oneRM-percent">1RM:</label>
+    <input type="number" id="oneRM-percent">
+    <label for="percent">Percentage:</label>
+    <input type="number" id="percent" value="75">
+  </div>
+
+  <div class="mode-section mode-rpe">
+    <label for="oneRM-rpe">1RM:</label>
+    <input type="number" id="oneRM-rpe">
+    <label for="rpe-value">RPE:</label>
+    <select id="rpe-value">
+      <option value="6">6</option>
+      <option value="6.5">6.5</option>
+      <option value="7">7</option>
+      <option value="7.5">7.5</option>
+      <option value="8" selected>8</option>
+      <option value="8.5">8.5</option>
+      <option value="9">9</option>
+      <option value="9.5">9.5</option>
+      <option value="10">10</option>
+    </select>
+  </div>
+
+  <label for="reps">Reps:</label>
+  <input type="number" id="reps" value="5" min="1" max="10">
   
   <button id="calculate">Calculate Warmup</button>
   
-  <pre id="result"></pre>
+  <div id="result"></div>
   
   <script src="script.js"></script>
 </body>
